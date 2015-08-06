@@ -1,0 +1,31 @@
+<div ng-controller="booksController as bookList">
+    <h3 class="text-right">Books<span class="label label-default">{{ bookList.list.length }}</span></h3>
+
+<hr>
+<div class="jumbotron">
+<h1>What is your favorite book?</h1>
+    <form ng-submit>
+        <input type="text" ng-model="bookList.name" placeholder="Enter Book Name">
+        <input type="text" ng-model="bookList.author" placeholder="Enter Book's Author">
+        <input type="text" ng-model="bookList.year" placeholder="Enter Book's Year">
+        <input type="submit" value="Add">
+    </form>
+</div>
+
+    <ul class="list-group" ng-class="{'hidden': !bookList.toggle}">
+        <li ng-repeat="book in bookList.list" class="list-group-item"
+            ng-class="{'list-group-item-success': book.year > 2000, 'list-group-item-warning': book.year < 2000 }"
+            >
+            <b>{{ book.name }}</b>
+            <em>{{ book.author }}</em>
+            <small>{{ book.year }}</small>
+        </li>
+    </ul>
+
+    <div class="text-center">
+        <div class="btn-group">
+            <button class="btn btn-default" ng-click="bookList.toggle = true">Show Books</button>
+            <button class="btn btn-default" ng-click="bookList.toggle = false">Hide Books</button>
+        </div>
+    </div>
+</div>
